@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+        
         stage('sonaranalysis') {
             steps {
                 echo 'SonarAnalysis..'
@@ -9,7 +10,7 @@ pipeline {
             }
         }
         stage('Build') {
-            steps {
+            steps { 
                 echo 'Building..'
             }
         }
