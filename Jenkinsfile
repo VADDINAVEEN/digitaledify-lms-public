@@ -15,6 +15,18 @@ pipeline {
                 sh 'cd webapp && curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && sudo apt-get install -y nodejs && npm install && npm run build'
             }
         }
+        stage('Release LMS') {
+            steps {
+                script {
+                    echo 'Releasing..'
+                    def packageJson = readJSON file: 'webapp/package.json'
+                    def packageVersion = packageJSON.version
+                    echo "${packageJSONVersion}"
+                    sh "zip webapp/dist-${packageJSONVersion}.zip -r webapp/dist"
+                    sh "curl -v -u admin:Omsrisai@78677 --upload-file webapp/dist-${packageJSONVersion}.zip http://20.219.51.51:8081/repository/lms/"
+                }
+            }
+        }
         stage('release') {
             steps {
                 echo 'Releasing..'
