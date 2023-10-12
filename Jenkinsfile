@@ -26,6 +26,7 @@ pipeline {
                     sh "curl -v -u admin:Omsrisai@78677 --upload-file webapp/dist-${packageJSONVersion}.zip http://20.219.51.51:8081/repository/lms/"     
             }
             }
+        }
         stage('release') {
             steps {
                 echo 'Releasing..'
@@ -37,5 +38,4 @@ pipeline {
             }
         }
     }
-}
 }
