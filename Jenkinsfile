@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps { 
                 echo 'Building..'
-                sh 'cd webapp && npm install && npm run build'
+                sh 'cd webapp && curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - && sudo apt-get install -y nodejs && npm install && npm run build'
             }
         }
         stage('release') {
